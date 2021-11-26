@@ -6,6 +6,9 @@
                     <h5 class="card-title">FORMULARIO DE REGISTRO</h5>
 
                     <form [formGroup]="form" (ngSubmit)="addOrEdit()">
+
+                        <input type="hidden" formControlName="id">
+
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" placeholder="Inserta el nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
