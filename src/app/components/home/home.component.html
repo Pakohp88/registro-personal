@@ -4,37 +4,50 @@
             <div class="card shadow-sm p-3 mb-5 bg-body rounded card-bg">
                 <div class="card-body card-bg">
                     <h5 class="card-title">FORMULARIO DE REGISTRO</h5>
-                    <form>
+
+                    <form [formGroup]="form" (ngSubmit)="addOrEdit()">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Inserta el nombre" [(ngModel)]="empleado.nombre" required>
+                            <input type="text" class="form-control" placeholder="Inserta el nombre" formControlName="nombre" [class.is-invalid]="nombreNoValido">
+                            <small *ngIf="nombreNoValido" class="text-danger">Ingresa el nombre</small>
+
                         </div>
 
                         <div class="mb-3">
                             <label for="apellidoPaterno" class="form-label">Apellido paterno</label>
-                            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Inserta el apellido paterno" [(ngModel)]="empleado.apellidoPaterno" required>
+                            <input type="text" class="form-control" placeholder="Inserta el apellido paterno" formControlName="apellidoPaterno" [class.is-invalid]="apellidoPaternoNoValido">
+                            <small *ngIf="apellidoPaternoNoValido" class="text-danger">Ingresa el apellido</small>
                         </div>
 
                         <div class=" mb-3 ">
                             <label for="apellidoMaterno " class="form-label ">Apellido materno</label>
-                            <input type="text " class="form-control " id="apellidoMaterno " placeholder="Inserta el apellido materno" [(ngModel)]="empleado.apellidoMaterno">
+                            <input type="text " class="form-control" placeholder="Inserta el apellido materno" formControlName="apellidoMaterno" [class.is-invalid]="apellidoMaternoaternoNoValido">
+                            <small *ngIf="apellidoMaternoaternoNoValido" class="text-danger">Ingresa el apellido</small>
+                        </div>
+
+                        <div class=" mb-3 ">
+                            <label for="email " class="form-label ">Email</label>
+                            <input type="email " class="form-control" placeholder="Inserta email" formControlName="email" [class.is-invalid]="emailNoValido">
+                            <small *ngIf="emailNoValido" class="text-danger">Ingresa el email</small>
                         </div>
 
                         <div class="mb-3 ">
                             <label for="edad " class="form-label ">Edad</label>
-                            <input type="number " class="form-control " id="edad " placeholder="Inserta la edad" [(ngModel)]="empleado.edad" required>
+                            <input type="text " class="form-control" placeholder="Inserta la edad" formControlName="edad" [class.is-invalid]="edadNoValido">
+                            <small *ngIf="edadNoValido" class="text-danger">Ingresa la edad</small>
                         </div>
 
                         <div class="mb-3 ">
-                            <label for="edad " class="form-label ">Elegir sexo</label>
-                            <select class="form-select " aria-label="Seleccionar sexo" [(ngModel)]="empleado.apellidoMaterno" required>
-                                <option selected>Sexo</option>
+                            <label for="sexo " class="form-label ">Elegir sexo</label>
+                            <select class="form-select " aria-label="Seleccionar sexo" [(ngModel)]="empleado.sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
+                                <option selected disabled>Seleccionar sexo</option>
                                 <option value="Femenino ">Femenino</option>
                                 <option value="Masculino ">Masculino</option>                                
                               </select>
+                            <small *ngIf="sexoNoValido" class="text-danger">Selecciona el sexo</small>
                         </div>
 
-                        <button type="button" class="btn btn-success ">Guardar</button>
+                        <button type="submit" class="btn btn-success ">Guardar</button>
 
                     </form>
 
@@ -42,16 +55,17 @@
             </div>
         </div>
         <div class="col-md-8 ">
-            <table class="table ">
+            <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col ">#</th>
-                        <th scope="col ">Nombre</th>
-                        <th scope="col ">Apellido paterno</th>
-                        <th scope="col ">Apellido materno</th>
-                        <th scope="col ">Edad</th>
-                        <th scope="col ">Sexo</th>
-                        <th scope="col "></th>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido paterno</th>
+                        <th scope="col">Apellido materno</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,11 +74,13 @@
                         <td>{{ empleado.nombre }}</td>
                         <td>{{ empleado.apellidoPaterno }}</td>
                         <td>{{ empleado.apellidoMaterno }}</td>
+                        <td>{{ empleado.email }}</td>
                         <td>{{ empleado.edad }}</td>
                         <td>{{ empleado.sexo }}</td>
-                        <td></td>
+                        <td><button (click)="editar(empleado)" class="btn btn-primary text-white">Editar</button>
+                            <button (click)="borrar(empleado)" class="btn btn-danger text-white">Borrar</button>
+                        </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
