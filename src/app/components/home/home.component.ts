@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     {id: 2, nombre: "Brenda", apellidoPaterno: "Hernandez", apellidoMaterno:"Perez", edad:30, sexo: "Femenino"}
   ];
 
-  //empleado: Empleado = new Empleado();
+  empleado: Empleado = { id: 0, nombre: "", apellidoPaterno: "", apellidoMaterno: "", edad: 0, sexo:""  };
 
   constructor() { }
 

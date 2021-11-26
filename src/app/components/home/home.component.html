@@ -3,60 +3,60 @@
         <div class="col-md-4">
             <div class="card shadow-sm p-3 mb-5 bg-body rounded card-bg">
                 <div class="card-body card-bg">
-                    <h5 class="card-title">FORMULARIO</h5>
+                    <h5 class="card-title">FORMULARIO DE REGISTRO</h5>
                     <form>
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="nombre" placeholder="Inserta el nombre">
+                            <input type="text" class="form-control" id="nombre" placeholder="Inserta el nombre" [(ngModel)]="empleado.nombre" required>
                         </div>
 
                         <div class="mb-3">
                             <label for="apellidoPaterno" class="form-label">Apellido paterno</label>
-                            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Inserta el apellido paterno">
+                            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Inserta el apellido paterno" [(ngModel)]="empleado.apellidoPaterno" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="apellidoMaterno" class="form-label">Apellido materno</label>
-                            <input type="text" class="form-control" id="apellidoMaterno" placeholder="Inserta el apellido materno">
+                        <div class=" mb-3 ">
+                            <label for="apellidoMaterno " class="form-label ">Apellido materno</label>
+                            <input type="text " class="form-control " id="apellidoMaterno " placeholder="Inserta el apellido materno" [(ngModel)]="empleado.apellidoMaterno">
                         </div>
 
-                        <div class="mb-3">
-                            <label for="edad" class="form-label">Edad</label>
-                            <input type="number" class="form-control" id="edad" placeholder="Inserta la edad">
+                        <div class="mb-3 ">
+                            <label for="edad " class="form-label ">Edad</label>
+                            <input type="number " class="form-control " id="edad " placeholder="Inserta la edad" [(ngModel)]="empleado.edad" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="edad" class="form-label">Elegir sexo</label>
-                            <select class="form-select" aria-label="Seleccionar sexo">
+                        <div class="mb-3 ">
+                            <label for="edad " class="form-label ">Elegir sexo</label>
+                            <select class="form-select " aria-label="Seleccionar sexo" [(ngModel)]="empleado.apellidoMaterno" required>
                                 <option selected>Sexo</option>
-                                <option value="Femenino">Femenino</option>
-                                <option value="Masculino">Masculino</option>                                
+                                <option value="Femenino ">Femenino</option>
+                                <option value="Masculino ">Masculino</option>                                
                               </select>
                         </div>
 
-                        <button type="button" class="btn btn-success">Guardar</button>
+                        <button type="button" class="btn btn-success ">Guardar</button>
 
                     </form>
 
                 </div>
             </div>
         </div>
-        <div class="col-md-8">
-            <table class="table">
+        <div class="col-md-8 ">
+            <table class="table ">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Apellido paterno</th>
-                        <th scope="col">Apellido materno</th>
-                        <th scope="col">Edad</th>
-                        <th scope="col">Sexo</th>
-                        <th scope="col"></th>
+                        <th scope="col ">#</th>
+                        <th scope="col ">Nombre</th>
+                        <th scope="col ">Apellido paterno</th>
+                        <th scope="col ">Apellido materno</th>
+                        <th scope="col ">Edad</th>
+                        <th scope="col ">Sexo</th>
+                        <th scope="col "></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let empleado of empleados, let i = index">
-                        <th scope="row">{{ empleado.id }}</th>
+                    <tr *ngFor="let empleado of empleados, let i= index ">
+                        <th scope="row "><span class="badge bg-success "> {{ empleado.id }} </span></th>
                         <td>{{ empleado.nombre }}</td>
                         <td>{{ empleado.apellidoPaterno }}</td>
                         <td>{{ empleado.apellidoMaterno }}</td>
