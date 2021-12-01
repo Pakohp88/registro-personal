@@ -42,7 +42,7 @@
 
                         <div class="mb-3 ">
                             <label for="sexo " class="form-label ">Elegir sexo</label>
-                            <select class="form-select " aria-label="Seleccionar sexo" [(ngModel)]="empleado.sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
+                            <select class="form-select " aria-label="Seleccionar sexo" formControlName="sexo" [class.is-invalid]="sexoNoValido">
                                 <option selected disabled>Seleccionar sexo</option>
                                 <option value="Femenino ">Femenino</option>
                                 <option value="Masculino ">Masculino</option>                                
@@ -50,7 +50,7 @@
                             <small *ngIf="sexoNoValido" class="text-danger">Selecciona el sexo</small>
                         </div>
 
-                        <button type="submit" class="btn btn-success ">Guardar</button>
+                        <button type="submit" [disabled]="formValid" class="btn btn-success">Guardar</button>
 
                     </form>
 

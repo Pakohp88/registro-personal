@@ -1,3 +1,4 @@
+import { invalid } from '@angular/compiler/src/render3/view/util';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Empleado } from '../../models/empleado';
@@ -12,10 +13,11 @@ export class HomeComponent implements OnInit {
   empleados: Empleado[] = [{ id: 1, nombre: "Francisco", apellidoPaterno: "Hernandez", apellidoMaterno: "Perez", email: "pako@mail.com", edad: 33, sexo: "Masculino" }];
   empleado: Empleado = { id: 0, nombre: "", apellidoPaterno: "", apellidoMaterno: "", email: "", edad: 0, sexo: "" };
   form: FormGroup;
+  formValid: boolean = true;
 
 
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) {}
 
   get nombreNoValido() {
     return this.form.get('nombre').invalid && this.form.get('nombre').touched;
@@ -50,8 +52,9 @@ export class HomeComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       edad: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       sexo: ['', Validators.required]
-    });
+    });    
 
+    this.listener();
   }
 
   addOrEdit() {
@@ -91,15 +94,10 @@ export class HomeComponent implements OnInit {
 
         let index = 0;
 
-        this.empleados.forEach(function (empleado) {
-                    
-          if(empleado.id = Id){
-
-
-          }
-          else{
+        this.empleados.forEach(function (empleado) {                    
+          if(empleado.id != Id){
             index++;
-          }                    
+          }
         });
         
         this.empleados[index] = this.empleado;              
@@ -125,6 +123,18 @@ export class HomeComponent implements OnInit {
 
   borrar(e: Empleado) {
     this.empleados = this.empleados.filter(x => x != e);
+  }
+
+  listener() {
+
+    this.form.statusChanges.subscribe( status => {      
+      if(status =="VALID"){        
+        this.formValid = false;
+      }
+      else{
+        this.formValid = true;
+      }  
+    });  
   }
 
 
